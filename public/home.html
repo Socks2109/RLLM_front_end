@@ -9,16 +9,52 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <link rel="icon" href="imgs/robot.svg">
     <link rel="stylesheet" href="home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script src="home.js" defer></script>
     <title>Regulatory LLM</title>
   </head>
   <body>
-    <section class="side-panel">
-      <img src="imgs/menu icon.png" alt="menu icon" width="50px" height="50px" class="menu-icon">
-    </section>
-    <section class="center-title">
-        <h1 class="text-color">
+    <nav>
+      <h1 class="text-color">
             Regulatory LLM
-        </h1>
-    </section>
+      </h1>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="home.html"><img class="nav-icon" src="imgs/house.svg" alt="home icon">Home</a></li>
+        <li class="nav-item"><a href="about.html"><img class="nav-icon" src="imgs/info.svg" alt="info icon">About</a></li>
+        <li class="nav-item">
+          <a href="contact.html"><img class="nav-icon" src="imgs/telephone.svg" alt="contact icon">
+            Contact
+            <img class="nav-icon dropdown-arrow contact-dropdown" src="imgs/chevron-down.svg" alt="down arrow icon">
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="resources.html"><img class="nav-icon" src="imgs/book.svg" alt="book icon">
+            Resources
+            <img class="nav-icon dropdown-arrow resources-dropdown" src="imgs/chevron-down.svg" alt="down arrow icon">
+          </a>
+        </li>
+    </nav>
+    <main>
+      <div class="align-right">
+        <div class="hidden contact-box">
+          <p>Email us at:<a href="mailto:liang.zhao2@ucsf.edu" class="contact-link">liang.zhao2@ucsf.edu</a></p>
+        </div>
+      </div>
+      <div class="main-box">
+        <form>
+          <textarea id="question" name="question" placeholder="Type your question here..." rows="1"></textarea>
+          <div class="box-buttons">
+            <input type="file" accept="pdf" class="file-input" id="fileInput" name="fileInput">
+            <label for="fileInput">
+              <img src="imgs/paperclip.svg" alt="Upload file" class="upload-icon"/>
+            </label>
+            <button type="submit"><img src="imgs/arrow-right.svg" alt="Submit question" class="upload-icon"/></button>
+          </div>
+        </form>
+      </div>
+    </main>
   </body>
