@@ -1,0 +1,18 @@
+/*
+  Name: Isaac Yeoh
+  Date: June 8th, 2025
+  Organization: Zhao Lab
+  This is the stylesheet for home.html. It contains the styles
+  pertaining to the sidebar, the homepage, and more.
+*/
+
+.center-title {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    background-color: #052049;
+}
+
+.text-color {
+    color: #E1E3E5;
+}
