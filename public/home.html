@@ -25,15 +25,16 @@
       <ul class="nav-list">
         <li class="nav-item"><a href="home.html"><img class="nav-icon" src="imgs/house.svg" alt="home icon">Home</a></li>
         <li class="nav-item"><a href="about.html"><img class="nav-icon" src="imgs/info.svg" alt="info icon">About</a></li>
-        <li class="nav-item">
-          <a href="contact.html"><img class="nav-icon" src="imgs/telephone.svg" alt="contact icon">
+        <li class="nav-item contact-dropdown">
+          <button type="button" class="nav-link-button">
+            <img class="nav-icon" src="imgs/telephone.svg" alt="contact icon">
             Contact
-            <img class="nav-icon dropdown-arrow contact-dropdown" src="imgs/chevron-down.svg" alt="down arrow icon">
-          </a>
+            <img class="nav-icon dropdown-arrow" src="imgs/chevron-down.svg" alt="down arrow icon">
+          </button>
         </li>
         <li class="nav-item">
           <a href="resources.html"><img class="nav-icon" src="imgs/book.svg" alt="book icon">
-            Resources
+            Citation
             <img class="nav-icon dropdown-arrow resources-dropdown" src="imgs/chevron-down.svg" alt="down arrow icon">
           </a>
         </li>
@@ -41,20 +42,28 @@
     <main>
       <div class="align-right">
         <div class="hidden contact-box">
-          <p>Email us at:<a href="mailto:liang.zhao2@ucsf.edu" class="contact-link">liang.zhao2@ucsf.edu</a></p>
+          <p>Email us at: <a href="mailto:liang.zhao2@ucsf.edu" class="contact-link">liang.zhao2@ucsf.edu</a></p>
         </div>
       </div>
-      <div class="main-box">
-        <form>
-          <textarea id="question" name="question" placeholder="Type your question here..." rows="1"></textarea>
-          <div class="box-buttons">
-            <input type="file" accept="pdf" class="file-input" id="fileInput" name="fileInput">
-            <label for="fileInput">
-              <img src="imgs/paperclip.svg" alt="Upload file" class="upload-icon"/>
-            </label>
-            <button type="submit"><img src="imgs/arrow-right.svg" alt="Submit question" class="upload-icon"/></button>
+      <div class="main-container">
+        <aside class="side-panel">
+        </aside>
+        <div class="main-box">
+          <div class="response">
+            <div class="fixed-container">
+            </div>
           </div>
-        </form>
+          <form>
+            <textarea id="question" name="question" placeholder="Type your question here..." rows="1"></textarea>
+            <div class="box-buttons">
+              <input type="file" accept="pdf" class="file-input" id="fileInput" name="fileInput">
+              <label for="fileInput">
+                <img src="imgs/paperclip.svg" alt="Upload file" class="upload-icon"/>
+              </label>
+              <button type="submit"><img src="imgs/arrow-right.svg" alt="Submit question" class="upload-icon"/></button>
+            </div>
+          </form>
+        </div>
       </div>
     </main>
   </body>

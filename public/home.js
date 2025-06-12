@@ -4,6 +4,8 @@
 
   function init() {
     autoResize();
+    toggleDropdownContact();
+    setupChatForm();
   }
 
   function autoResize() {
@@ -24,8 +26,66 @@
   }
 
   function toggleDropdownContact() {
-    const dropdown = qs('.content');
-    dropdown.addEventListener("hover")
+    const dropdown = qs('.contact-dropdown');
+    const contactBox = qs('.contact-box');
+
+    dropdown.addEventListener('click', () => {
+      contactBox.classList.toggle('hidden');
+    });
+  }
+
+  function setupChatForm() {
+    const form = qs('form');
+    const textarea = id('question');
+
+    // Handle Enter key submission
+    textarea.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        form.dispatchEvent(new Event('submit'));
+      }
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (textarea.value.trim() !== '') {
+        appendUserMessage(textarea.value);
+        // TODO: Add your chatbot response logic here
+        // For now, we'll just echo the message
+        appendBotMessage("This is a placeholder response. Replace with actual chatbot response.");
+        textarea.value = '';
+        textarea.style.height = 'auto';
+      }
+    });
+  }
+
+  function appendUserMessage(message) {
+    const responseDiv = qs('.response');
+    const wrapperDiv = gen('div');
+    wrapperDiv.classList.add('user-align-right');
+    
+    const messageDiv = gen('div');
+    messageDiv.classList.add('user-response');
+    messageDiv.textContent = message;
+    
+    wrapperDiv.appendChild(messageDiv);
+    responseDiv.appendChild(wrapperDiv);
+    responseDiv.scrollTo({
+      top: responseDiv.scrollHeight,
+      behavior: 'smooth'
+    });
+  }
+
+  function appendBotMessage(message) {
+    const responseDiv = qs('.response');
+    const messageDiv = gen('div');
+    messageDiv.classList.add('bot-response');
+    messageDiv.textContent = message;
+    responseDiv.appendChild(messageDiv);
+    responseDiv.scrollTo({
+      top: responseDiv.scrollHeight,
+      behavior: 'smooth'
+    });
   }
 
   /**
