@@ -47,6 +47,27 @@
       </div>
       <div class="main-container">
         <aside class="side-panel">
+          <div class="align-left sidebar-header">
+            <p>
+              Drug Name
+            </p>
+          </div>
+          <select name="drug-dropdown" id="select-drug">
+            <option value="self-upload">Self Upload</option>
+          </select>
+          <div class="align-left sidebar-header">
+            <p>
+              Retrieved Documents
+            </p>
+          </div>
+          <div class="sidebar-documents">
+            <div class="pdf-list">
+              <img src="imgs/pdf-icon.svg" alt="PDF icon" class="pdf-icon">
+              <span class="pdf-name">No documents uploaded</span>
+            </div>
+          </div>
+          <div class="suggestions">
+          </div>
         </aside>
         <div class="main-box">
           <div class="response">
@@ -54,7 +75,7 @@
             </div>
           </div>
           <form>
-            <textarea id="question" name="question" placeholder="Type your question here..." rows="1"></textarea>
+            <textarea id="question" name="question" placeholder="Ask anything" rows="1"></textarea>
             <div class="box-buttons">
               <input type="file" accept="pdf" class="file-input" id="fileInput" name="fileInput">
               <label for="fileInput">
