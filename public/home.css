@@ -270,7 +270,7 @@ p {
   padding: 15px;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
-  max-height: 50%;
+  max-height: 90%;
   overflow-y: auto;
 }
 
@@ -278,4 +278,31 @@ p {
   padding: 3px 10px;
   font-size: 14px;
   border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+}
+
+.pdf-name {
+  padding-left: 5px;
+}
+
+.sample-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.sample-question {
+  padding: 8px 12px;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sample-question:hover {
+  background-color: #e0e0e0;
 }

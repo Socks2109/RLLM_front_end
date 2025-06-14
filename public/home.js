@@ -6,6 +6,9 @@
     autoResize();
     toggleDropdownContact();
     setupChatForm();
+    setupDrugSelection();
+    setupFileUpload();
+    setupSampleQuestions();
   }
 
   function autoResize() {
@@ -85,6 +88,117 @@
     responseDiv.scrollTo({
       top: responseDiv.scrollHeight,
       behavior: 'smooth'
+    });
+  }
+
+  function setupDrugSelection() {
+    const drugSelect = id('select-drug');
+    const noDocs = qs('.no-docs');
+    const sidebarDocuments = qs('.sidebar-documents');
+    const sampleQuestions = qs('.sample-questions');
+    const suggestionsHeader = qs('.suggestions');
+
+    drugSelect.addEventListener('change', function() {
+      if (this.value === 'self-upload') {
+        noDocs.classList.remove('hidden');
+        sidebarDocuments.style.maxHeight = '75%';
+        sampleQuestions.classList.add('hidden');
+        suggestionsHeader.classList.add('hidden');
+      } else {
+        noDocs.classList.add('hidden');
+        sidebarDocuments.style.maxHeight = '40%';
+        sampleQuestions.classList.remove('hidden');
+        suggestionsHeader.classList.remove('hidden');
+      }
+    });
+
+    // Set initial state based on default selection
+    if (drugSelect.value === 'self-upload') {
+      sidebarDocuments.style.maxHeight = '75%';
+      sampleQuestions.classList.add('hidden');
+      suggestionsHeader.classList.add('hidden');
+    } else {
+      sidebarDocuments.style.maxHeight = '40%';
+      sampleQuestions.classList.remove('hidden');
+      suggestionsHeader.classList.remove('hidden');
+    }
+  }
+
+  function setupFileUpload() {
+    const fileInput = id('fileInput');
+    const sidebarDocuments = qs('.sidebar-documents');
+    const noDocs = qs('.no-docs');
+
+    fileInput.addEventListener('change', function(e) {
+      const files = e.target.files;
+      if (files.length > 0) {
+        // Only clear the "No documents uploaded" message if it exists
+        if (noDocs) {
+          noDocs.remove();
+        }
+
+        // Add each uploaded file to the list
+        for (const file of files) {
+          const pdfItem = gen('div');
+          pdfItem.classList.add('pdf-list');
+          
+          const pdfIcon = gen('img');
+          pdfIcon.src = 'imgs/pdf-icon.svg';
+          pdfIcon.alt = 'PDF icon';
+          pdfIcon.classList.add('pdf-icon');
+          
+          const pdfName = gen('span');
+          pdfName.classList.add('pdf-name');
+          pdfName.textContent = file.name;
+          
+          pdfItem.appendChild(pdfIcon);
+          pdfItem.appendChild(pdfName);
+          sidebarDocuments.appendChild(pdfItem);
+        }
+      }
+    });
+  }
+
+  function setupSampleQuestions() {
+    const sampleQuestions = qs('.sample-questions');
+    const drugSelect = id('select-drug');
+    const questionTextarea = id('question');
+
+    const questions = [
+      "What is the formulation composition of {drug_name}",
+      "What are the pharmacokinetic properties of {drug_name}",
+      "What is the risk/benefit profile of {drug_name}",
+      "What clinical trials were conducted for {drug_name}"
+    ];
+
+    // Function to update question text
+    function updateQuestionText(questionDiv, question) {
+      const selectedOption = drugSelect.options[drugSelect.selectedIndex];
+      const selectedDrug = selectedOption.value === 'self-upload' ? 'the selected drug' : selectedOption.text;
+      questionDiv.textContent = question.replace('{drug_name}', selectedDrug);
+    }
+
+    // Create and add question divs
+    questions.forEach(question => {
+      const questionDiv = gen('div');
+      questionDiv.classList.add('sample-question');
+      updateQuestionText(questionDiv, question);
+      
+      questionDiv.addEventListener('click', () => {
+        questionTextarea.value = questionDiv.textContent;
+        questionTextarea.focus();
+        questionTextarea.dispatchEvent(new Event('input'));
+      });
+
+      sampleQuestions.appendChild(questionDiv);
+    });
+
+    // Update questions when drug selection changes
+    drugSelect.addEventListener('change', () => {
+      const questionDivs = sampleQuestions.querySelectorAll('.sample-question');
+      questionDivs.forEach((div, index) => {
+        updateQuestionText(div, questions[index]);
+      });
     });
   }
 
